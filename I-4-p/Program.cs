@@ -7,6 +7,8 @@ namespace I_4_p
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.WriteLine("test");
+            Console.ReadKey();
         }
     }
 }
