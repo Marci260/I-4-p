@@ -51,12 +51,12 @@ namespace I_4_p
             //A B C D E F G H I J K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z  " "
             //0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
         }
-        
 
-        
+
+
         #endregion
 
-
+        #region Methods
         public string coding() 
         {
             //ha a key hoszabb mint a kod akkor ha megfejtes a kod hossza lesz
@@ -101,6 +101,7 @@ namespace I_4_p
                 }
 
             }
+          
             for (int i = 0; i < temp.Length; i++)
             {
                 for (int j = 0; j < abc.Length; j++)
@@ -132,6 +133,7 @@ namespace I_4_p
                 }
                 codekey = temporary;
             }
+
             int[] temp = new int[code.Length];
             for (int i = 0; i < code.Length; i++)
             {
@@ -158,9 +160,9 @@ namespace I_4_p
             {
                 for (int j = 0; j < abc.Length; j++)
                 {
-                    if (temp[i]<0)
+                    if (temp[i] < 0)
                     {
-                        int number = temp[i]  *(-1); /// javítani
+                        int number = temp[i]  +27 ; /// javítani
 
                         answer += abc[number];
                     }
@@ -177,6 +179,7 @@ namespace I_4_p
             return answer;
 
         }
+        #endregion
 
     }
 }
