@@ -59,7 +59,7 @@ namespace I_4_p
         #region Methods
         public string coding() 
         {
-            //ha a key hoszabb mint a kod akkor ha megfejtes a kod hossza lesz
+            
             string temporary = "";
             if (code.Length < codekey.Length)
             {

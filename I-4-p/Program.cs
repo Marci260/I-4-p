@@ -49,7 +49,10 @@ namespace I_4_p
             #endregion
 
             Guess myGuess = new Guess(blockWords);
-
+            string megoldas3;
+            megoldas3 = myGuess.MakeAGuess("zhmgfbharmf kfnoafzhllgmfhe",
+                "early bird catches the worm", "curiosity killed the cat");
+            Console.WriteLine(megoldas3);
             #endregion
 
 
