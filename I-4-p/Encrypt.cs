@@ -162,7 +162,7 @@ namespace I_4_p
                 {
                     if (temp[i] < 0)
                     {
-                        int number = temp[i]  +27 ; /// javítani
+                        int number = temp[i]  +27 ; 
 
                         answer += abc[number];
                     }
