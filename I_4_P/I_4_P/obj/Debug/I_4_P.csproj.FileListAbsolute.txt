@@ -1,0 +1,7 @@
+C:\Users\marci\source\repos\I_4_P\I_4_P\bin\Debug\I_4_P.exe.config
+C:\Users\marci\source\repos\I_4_P\I_4_P\bin\Debug\I_4_P.exe
+C:\Users\marci\source\repos\I_4_P\I_4_P\bin\Debug\I_4_P.pdb
+C:\Users\marci\source\repos\I_4_P\I_4_P\obj\Debug\I_4_P.csprojAssemblyReference.cache
+C:\Users\marci\source\repos\I_4_P\I_4_P\obj\Debug\I_4_P.csproj.CoreCompileInputs.cache
+C:\Users\marci\source\repos\I_4_P\I_4_P\obj\Debug\I_4_P.exe
+C:\Users\marci\source\repos\I_4_P\I_4_P\obj\Debug\I_4_P.pdb
