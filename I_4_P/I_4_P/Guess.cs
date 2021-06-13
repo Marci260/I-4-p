@@ -37,10 +37,9 @@ namespace I_4_P
         #region Methods
         public string MakeAGuess(string message1, string message2)
         {
-            //lopp (ha paratlan szam akkor message2, ha paros akkor message1)
-            //feltesszuk hogy mind a ket uzenet ugyan azzal a kulccsal keszult
-            string first_word = "early "; // megoldani hogy talalgatassal is menjen
-            string key = ""; // a kitalalt kulcsunk
+            
+            string first_word = "early "; 
+            string key = ""; 
             int[] keyWordNumber = new int[message1.Length];
             string word_fragment = "";
             int currentMessageNumber = 1;
@@ -50,9 +49,7 @@ namespace I_4_P
 
             while (key.Length != message2.Length)
             {
-
-
-                //eldontjuk hogy melyik uzenetet helyettesitjuk eppen
+                
                 if (currentMessageNumber % 2 == 0)
                 {
                     currentmessage_first = message2;
@@ -63,7 +60,7 @@ namespace I_4_P
                     currentmessage_first = message1;
                     currentmessage_second = message2;
                 }
-                //bele rakjuk egy tombbe az aktualisan kitalat szo karaktereinek hianyzo erteket
+               
                 for (int i = 0; i < first_word.Length; i++)
                 {
                     for (int j = 0; j < abc.Length; j++)
@@ -76,7 +73,7 @@ namespace I_4_P
                     }
                 }
 
-                //kivonjuk belole az uzenet aktualis karaktereinek erteket
+               
                 for (int i = 0; i < first_word.Length; i++)
                 {
                     for (int j = 0; j < abc.Length; j++)
@@ -88,7 +85,7 @@ namespace I_4_P
                     }
                 }
 
-                //az igy kapott erteket bele iratjuk a kulcsunkba
+               
                 for (int i = 0; i < first_word.Length; i++)
                 {
                     for (int j = 0; j < abc.Length; j++)
@@ -112,18 +109,10 @@ namespace I_4_P
 
                 }
 
-
-
-
-                //kitisztítjuk a tombot
                 for (int i = 0; i < keyWordNumber.Length; i++)
                 {
                     keyWordNumber[i] = 0;
                 }
-
-
-
-                //kulcs behelyettesitese a masik uzenetbe
 
                 for (int i = 0; i < first_word.Length; i++)
                 {
@@ -149,7 +138,7 @@ namespace I_4_P
                 }
 
                 word_fragment = "";
-                //megkapjuk a szotoredeket
+                
                 for (int i = 0; i < first_word.Length; i++)
                 {
                     for (int j = 0; j < abc.Length; j++)
@@ -169,12 +158,6 @@ namespace I_4_P
 
                 }
 
-
-
-
-
-
-                // megkeressuk azokat a szavakat amiben benne van ez a toredek 
                 for (int i = 0; i < words.Length; i++)
                 {
                     if (words[i].Contains(word_fragment))
