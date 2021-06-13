@@ -33,120 +33,159 @@ namespace I_4_p
         #endregion
 
         #region Methods
-        public string MakeAGuess(string secret,string message1, string message2) 
+        public string MakeAGuess(string message1, string message2)
         {
-            string guessTheKey = "";
-            string[] temporary = new string[message1.Length / 2];
-            int number = 0;
-            int i = 0;
-            int[] character = new int[secret.Length];
-            string secondWord = "";
-            string guess = "";
+            //lopp (ha paratlan szam akkor message2, ha paros akkor message1)
+            //feltesszuk hogy mind a ket uzenet ugyan azzal a kulccsal keszult
+            string first_word = "early "; // megoldani hogy talalgatassal is menjen
+            string key = ""; // a kitalalt kulcsunk
+            int[] keyWordNumber = new int[message1.Length];
+            string word_fragment = "";
+            int currentMessageNumber = 1;
+            string currentmessage_first = "";
+            string currentmessage_second = "";
 
 
-            while (message1[i] != ' ')
+            while (key.Length != message2.Length)
             {
 
-                guess += message1[i];
-                i++;
-            }
-            for (int j = 0; j < words.Length; j++)
-            {
-                if (words[j].Contains(guess))
+
+                //eldontjuk hogy melyik uzenetet helyettesitjuk eppen
+                if (currentMessageNumber % 2 == 0)
                 {
-                    temporary[number] = words[j];
-                    number++;
+                    currentmessage_first = message2;
+                    currentmessage_second = message1;
                 }
-               
-            }
-            for (int j = 0; j < secret.Length; j++)
-            {
-                for (int k = 0; k < abc.Length; k++)
+                else
                 {
-                    if (secret[j] == abc[k])
+                    currentmessage_first = message1;
+                    currentmessage_second = message2;
+                }
+                //bele rakjuk egy tombbe az aktualisan kitalat szo karaktereinek hianyzo erteket
+                for (int i = 0; i < first_word.Length; i++)
+                {
+                    for (int j = 0; j < abc.Length; j++)
                     {
-                        character[j] = k;
+                        if (currentmessage_first[i] == abc[j] && i >= key.Length)
+                        {
+                            keyWordNumber[i] += j;
+                        }
+
                     }
                 }
-            }
-            for (int j = 0; j < guess.Length; j++)
-            {
-                for (int k = 0; k < abc.Length; k++)
-                {
-                    if (guess[j] == abc[k])
-                    {
-                      
-                        character[j] -= k;
-                    }
-                }
-            }
-            for (int j = 0; j < character.Length; j++)
-            {
-                for (int k = 0; k < abc.Length; k++)
-                {
-                    if (character[j] < 0)
-                    {
-                        int tempnum = character[j] + 27;
-                        guessTheKey += abc[tempnum];
-                    }
-                    else
-                    {
-                        guessTheKey += abc[k];
-                    }
-                }
-                break;
-            }
-            /////
-            int[] tempsize = new int[message2.Length];
-            for (int j= 0; j < guess.Length; j++)
-            {
                 
-                for (int k = 0; k < abc.Length; k++)
+                //kivonjuk belole az uzenet aktualis karaktereinek erteket
+                for (int i = 0; i < first_word.Length; i++)
                 {
-                    if (guess[j] == abc[k])
+                    for (int j = 0; j < abc.Length; j++)
                     {
-                        tempsize[j] += k;
+                        if (first_word[i] == abc[j] && i >= key.Length)
+                        {
+                            keyWordNumber[i] -= j;
+                        }
+                    }
+                }
+                
+                //az igy kapott erteket bele iratjuk a kulcsunkba
+                for (int i = 0; i < first_word.Length; i++)
+                {
+                    for (int j = 0; j < abc.Length; j++)
+                    {
+                        if (i >= key.Length)
+                        {
+
+                            if (keyWordNumber[i] < 0)
+                            {
+                                int tempnum = keyWordNumber[i] + 27;
+                                key += abc[tempnum];
+                            }
+                            else
+                            {
+                                key += abc[keyWordNumber[i]];
+                            }
+                            break;
+                        }
+                        
                     }
                     
                 }
-            }
-            for (int j = 0; j < secret.Length; j++)
-            {
-                for (int k = 0; k < abc.Length; k++)
+                
+
+
+                
+                //kitisztítjuk a tombot
+                for (int i = 0; i < keyWordNumber.Length; i++)
                 {
-                    if (secret[j] == abc[k])
+                    keyWordNumber[i] = 0;
+                }
+
+                
+                
+                //kulcs behelyettesitese a masik uzenetbe
+
+                for (int i = 0; i < first_word.Length; i++)
+                {
+                    for (int j = 0; j < abc.Length; j++)
                     {
-                        tempsize[j] += k;
+                        if (currentmessage_second[i] == abc[j])
+                        {
+                            keyWordNumber[i] += j;
+                        }
+
                     }
                 }
-            }
-            for (int j = 0; j < tempsize.Length; j++)
-            {
-                for (int k = 0; k < abc.Length; k++)
+                
+                for (int i = 0; i < first_word.Length; i++)
                 {
-                    if (tempsize[j] > 26)
+                    for (int j = 0; j < abc.Length; j++)
                     {
-                        int tempnum = tempsize[j] % 27;
-                        secondWord += abc[tempnum];
-
-                    }
-                    else
-                    {
-                        secondWord += abc[k];
+                        if (key[i] == abc[j] )
+                        {
+                            keyWordNumber[i] -= j;
+                        }
                     }
                 }
+                
+                word_fragment = "";
+                //megkapjuk a szotoredeket
+                for (int i = 0; i < first_word.Length; i++)
+                {
+                    for (int j = 0; j < abc.Length; j++)
+                    {
+                        
+                        if (keyWordNumber[i] < 0)
+                        {
+                            int tempnum = keyWordNumber[i] + 27;
+                            word_fragment += abc[tempnum];
+                        }
+                        else
+                        {
+                            word_fragment += abc[keyWordNumber[i]];
+                        }
+                        break;
+                    }
+                    
+                }
+               
+               
+                
+                
+                
+                
+                // megkeressuk azokat a szavakat amiben benne van ez a toredek 
+                for (int i = 0; i < words.Length; i++)
+                {
+                    if (words[i].Contains(word_fragment,0))
+                    {
+                        first_word = words[i] +=" " ;
+                    }
+                    
+                }
+                currentMessageNumber++;
+                
             }
 
-
-            
-
-
-
-
-            return guessTheKey;
-
-
-
+            return key;
         }
         #endregion
 
