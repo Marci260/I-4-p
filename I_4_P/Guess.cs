@@ -223,13 +223,15 @@ namespace I_4_P
                 {
                     if (words[i].Contains(word_fragment) )
                     {
-                        first_word = words[i];
-
+                        first_word = words[i] += " ";
+                        
+                        //
                         if (first_word[first_word.Length-1] != ' ')
                         {
                             first_word += ' ';
                         }
                         break;
+                        //
                     }
                     
                     
