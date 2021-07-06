@@ -33,11 +33,12 @@ namespace Tester
             megoldas2 = secret.decoding();
 
 
-            Assert.That(megoldas2.Length == secret.CodeKey.Length);
+            Assert.That(megoldas2 == "hello world");
             
         }
 
         string[] blockWords;
+
         [SetUp]
         public void Init() 
         {
